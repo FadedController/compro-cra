@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Logo from "../components/Logo";
+import { Logo } from "../components";
 import axios from "axios";
 
 // Refactoring test commit
 
-const Index: React.FC = () => {
+const Home: React.FC = () => {
   const [isDevMode, setIsDevMode] = useState<boolean>();
   const [count, setCount] = useState(0);
   const [password, setPassword] = useState("");
@@ -85,7 +85,7 @@ const Index: React.FC = () => {
               </div>
             </div>
             <a
-              href="#"
+              href="# "
               className="h-12 w-12 transform transition-all hover:-translate-y-1 cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full text-[#072F41] shadow-md flex items-center justify-center"
             >
               <span className="material-icons transform -rotate-90 mb-1">
@@ -98,6 +98,7 @@ const Index: React.FC = () => {
             id="access"
           >
             <img
+              alt="Logo cuadrado"
               loading="eager"
               src="brand/square_logo.png"
               height={250}
@@ -152,4 +153,4 @@ const Index: React.FC = () => {
   );
 };
 
-export default Index;
+export default Home;

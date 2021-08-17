@@ -1,7 +1,12 @@
 const colors = require("tailwindcss/colors");
 
 module.exports = {
-  purge: ["./src/**/*.tsx", "./src/*.tsx", "./src/pages/*.tsx"],
+  purge: [
+    "./src/**/*.tsx",
+    "./src/*.tsx",
+    "./src/**/*.tsx",
+    "./src/**/**/*.tsx",
+  ],
   darkMode: false, // or 'media' or 'class',
   mode: "jit",
   theme: {
@@ -13,6 +18,8 @@ module.exports = {
       colors: {
         orange: colors.orange,
         lime: colors.lime,
+        darkBlue: "#083041",
+        lightBlue: "#67A2CD",
       },
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
