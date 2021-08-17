@@ -1,5 +1,4 @@
 import React from "react";
-import { AnimatedSwitch } from "react-router-transition";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { FullscreenLoading, PageWrapper, Sidebar } from "../../../components";
