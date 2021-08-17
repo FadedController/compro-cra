@@ -3,7 +3,7 @@ export type ticket = {
   asignedTo: string;
   createdAt: number;
   department: string;
-  ticketId: string;
+  ticketId?: string;
   priority: priority;
   status: status;
   category: string;

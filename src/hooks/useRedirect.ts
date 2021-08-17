@@ -15,18 +15,22 @@ const useRedirect: useRedirectHook = (user, userLoading) => {
   useEffect(() => {
     if (!userLoading) {
       if (user) {
-        const newPath = `/app/${user.permissions}/`;
-        if (pathname === newPath) {
+        const newPath = `/app/${user.permissions}`;
+        if (pathname.includes(newPath)) {
           setLoading(false);
         } else {
-          setRedirect(newPath);
           setLoading(false);
+          setRedirect(newPath);
         }
       } else {
         setLoading(false);
         setRedirect("/app/login");
       }
-    } else if (pathname === "/app/login") setLoading(false);
+    } else {
+      if (pathname === "/app/login") {
+        setLoading(false);
+      }
+    }
   }, [pathname, user, userLoading]);
 
   return [redirect, setRedirect, loading];

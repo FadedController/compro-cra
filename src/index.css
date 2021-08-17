@@ -2,6 +2,15 @@ html {
   scroll-behavior: smooth;
 }
 
+.switch-wrapper {
+  position: relative;
+}
+
+.switch-wrapper > div {
+  width: 100%;
+  position: absolute;
+}
+
 .spinner {
   height: 6rem;
   width: 6rem;
@@ -13,10 +22,16 @@ html {
 }
 
 @keyframes spin {
-  from {
-    rotate: 0deg;
+  0% {
   }
-  to {
-    rotate: 360deg;
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+  }
+  100% {
+    -webkit-transform: rotate(-360deg);
   }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Button from "./Button";
 import Logo from "./Logo";
 
 interface sidebarProps {
@@ -20,10 +21,10 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
   }, [pathname]);
 
   return (
-    <nav className="flex flex-col space-y-28 items-center w-2/12 h-screen bg-darkBlue rounded-r-xl font-poppins py-12 px-8 2xl:px-12">
+    <nav className="flex flex-col 2xl:space-y-28 space-y-16 items-center w-2/12 h-screen bg-darkBlue rounded-r-xl font-poppins py-12 px-6 2xl:px-12 overflow-y-scroll">
       <Logo height={50} white />
       {admin && (
-        <div className="flex flex-col space-y-16 w-full">
+        <div className="flex flex-col 2xl:space-y-16 space-y-12 w-full">
           <div className="flex flex-col space-y-4">
             <p className="text-base text-lightBlue opacity-70">Menú</p>
             <ul className="flex flex-col space-y-4">
@@ -33,7 +34,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     currentMenu === "/" || !currentMenu
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
-                  } text-white space-x-4 hover:pl-1 transition-all`}
+                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
                   to="/app/admin/"
                 >
                   <span
@@ -54,7 +55,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     currentMenu === "/pending"
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
-                  } text-white space-x-4 hover:pl-1 transition-all`}
+                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
                   to="/app/admin/pending"
                 >
                   <span
@@ -75,7 +76,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     currentMenu === "/history"
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
-                  } text-white space-x-4 hover:pl-1 transition-all`}
+                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
                   to="/app/admin/history"
                 >
                   <span className="material-icons-outlined">history</span>
@@ -93,7 +94,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     currentMenu === "/account"
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
-                  } text-white space-x-4 hover:pl-1 transition-all`}
+                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
                   to="/app/admin/account"
                 >
                   <span
@@ -114,7 +115,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     currentMenu === "/users"
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
-                  } text-white space-x-4 hover:pl-1 transition-all`}
+                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
                   to="/app/admin/users"
                 >
                   <span
@@ -135,7 +136,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     currentMenu === "/appearence"
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
-                  } text-white space-x-4 hover:pl-1 transition-all`}
+                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
                   to="/app/admin/appearence"
                 >
                   <span
@@ -155,14 +156,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
         </div>
       )}
       <div className="h-full flex items-end w-full">
-        <button
-          onClick={logout}
-          className="bg-lightBlue transform hover:scale-105 transition-transform w-full rounded-full py-2"
-        >
-          <span className="text-white opacity-80 text-xl font-bold">
-            Cerrar sesión
-          </span>
-        </button>
+        <Button onClick={logout}>Cerrar sesion</Button>
       </div>
     </nav>
   );

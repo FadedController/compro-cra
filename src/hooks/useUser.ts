@@ -3,9 +3,9 @@ import { user } from "../types";
 import { signOut } from "../utils/auth";
 import { Firestore } from "../utils/firebase";
 
-type useUserHook = (
-  email: string | undefined | null
-) => [user, boolean, () => void];
+export type userData = [user, boolean, () => void];
+
+type useUserHook = (email: string | undefined | null) => userData;
 
 const useUser: useUserHook = (email) => {
   const [user, setUser] = useState<user>(null);
