@@ -7,6 +7,8 @@ import { UserDataContext } from "../../../components/PageWrapper";
 import { ticket, user } from "../../../types";
 import { Firestore } from "../../../utils/firebase";
 
+export const fallbackPhotoUrl = "/brand/no_user.png";
+
 const AdminAccount: React.FC = () => {
   const [user] = useContext(UserDataContext);
   const [editMode, setEditMode] = useState(false);
@@ -55,8 +57,6 @@ const AdminAccount: React.FC = () => {
       ? user.departments.join(", ")
       : "Ningun departamento"
     : "Ningun departamento";
-  const fallbackPhotoUrl =
-    "https://www.google.com/url?sa=i&url=https%3A%2F%2Fpixabay.com%2Fvectors%2Fblank-profile-picture-mystery-man-973460%2F&psig=AOvVaw1MleA0njgGowLQE9tF5ZL3&ust=1629313784684000&source=images&cd=vfe&ved=0CAoQjRxqFwoTCOiy4v3guPICFQAAAAAdAAAAABAD";
 
   return (
     <div className="flex flex-col space-y-8">

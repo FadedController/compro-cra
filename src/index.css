@@ -35,3 +35,7 @@ html {
     -webkit-transform: rotate(-360deg);
   }
 }
+
+.min-h-96 {
+  min-height: 24rem;
+}

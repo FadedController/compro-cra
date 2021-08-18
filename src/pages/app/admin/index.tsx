@@ -25,14 +25,8 @@ const AdminPage: React.FC = () => {
         <>
           <Sidebar admin logout={logout} />
           <div className="w-full h-screen overflow-auto">
-            <Switch>
-              <PageWrapper userData={[user, userLoading, logout]}>
-                {/* <AnimatedSwitch
-                  atEnter={{ opacity: 0 }}
-                  atLeave={{ opacity: 0 }}
-                  atActive={{ opacity: 1 }}
-                  className="switch-wrapper"
-                > */}
+            <PageWrapper userData={[user, userLoading, logout]}>
+              <Switch>
                 <Route path="/app/admin/pending" component={AdminPending} />
                 <Route path="/app/admin/history" component={AdminHistory} />
                 <Route path="/app/admin/account" component={AdminAccount} />
@@ -40,11 +34,10 @@ const AdminPage: React.FC = () => {
                 <Route path="/app/admin/appearence">Appearence</Route>
                 <Route exact path="/app/admin/" component={AdminHome} />
                 <Route path="*">
-                  <Redirect to="/app/admin/" />
+                  <Redirect to="/app/admin" />
                 </Route>
-                {/* </AnimatedSwitch> */}
-              </PageWrapper>
-            </Switch>
+              </Switch>
+            </PageWrapper>
           </div>
         </>
       )}

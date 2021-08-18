@@ -8,7 +8,7 @@ export type ticket = {
   status: status;
   category: string;
   description: string;
-};
+} | null;
 
 export type priority = "low" | "medium" | "high" | "critic";
 export type status = "pending" | "ongoing" | "done";

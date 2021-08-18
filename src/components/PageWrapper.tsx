@@ -10,7 +10,9 @@ export const UserDataContext = createContext<userData>([null, false, () => {}]);
 const PageWrapper: React.FC<pageWrapperProps> = ({ children, userData }) => {
   return (
     <UserDataContext.Provider value={userData}>
-      <div className="px-24 pt-10 overflow-y-auto">{children}</div>
+      <div className="2xl:px-24 px-16 mt-10 mb-10 overflow-y-auto">
+        {children}
+      </div>
     </UserDataContext.Provider>
   );
 };
