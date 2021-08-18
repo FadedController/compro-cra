@@ -74,6 +74,14 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
         if (el?.ticketId?.toLowerCase().includes(lowerCaseQuery)) return true;
         if (el?.createdBy.toLowerCase().includes(lowerCaseQuery)) return true;
         if (el?.status.toLowerCase().includes(lowerCaseQuery)) return true;
+        if (el?.priority.toLowerCase().includes(lowerCaseQuery)) return true;
+        if (
+          new Date(el?.createdAt || 0)
+            .toString()
+            .toLowerCase()
+            .includes(lowerCaseQuery)
+        )
+          return true;
         return false;
       });
       return filteredArray;
