@@ -14,9 +14,19 @@ html {
 .spinner {
   height: 6rem;
   width: 6rem;
-  background-color: #083041;
+  background-color: #ffffff00;
   border: 1rem solid #cfdbe4;
   border-top-color: #67a2cd;
+  border-radius: 50%;
+  animation: spin 1s ease forwards infinite;
+}
+
+.spinner-1 {
+  height: 6rem;
+  width: 6rem;
+  background-color: #ffffff00;
+  border: 1rem solid #cfdbe4;
+  border-top-color: #aaaaaa;
   border-radius: 50%;
   animation: spin 1s ease forwards infinite;
 }

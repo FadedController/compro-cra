@@ -3,10 +3,21 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useAdminTickets } from "../hooks";
 import { status, ticket } from "../types";
-import { prioritySort, invertedPrioritySort } from "../utils/sorting";
-import Priority from "./Priority";
-import Status from "./Status";
-import UserOverlay from "./UserOverlay";
+import {
+  prioritySort,
+  invertedPrioritySort,
+  idSort,
+  invertedIdSort,
+  createdBySort,
+  invertedCreatedBySort,
+  statusSort,
+  invertedStatusSort,
+  dateSort,
+  invertedDateSort,
+} from "../utils/sorting";
+import { UserRedirect, Status, Priority } from "../components";
+import TicketRedirect from "./TicketRedirect";
+import Text from "./Text";
 
 interface ticketDashboardProps {
   config: {
@@ -16,11 +27,20 @@ interface ticketDashboardProps {
   };
 }
 
-type sortingFxs = "prioritySort";
+type sortingFxs =
+  | "prioritySort"
+  | "idSort"
+  | "userSort"
+  | "statusSort"
+  | "dateSort";
 
 // Sorting fx's
 const sortingFxMap = {
   prioritySort: [invertedPrioritySort, prioritySort],
+  idSort: [idSort, invertedIdSort],
+  userSort: [createdBySort, invertedCreatedBySort],
+  statusSort: [statusSort, invertedStatusSort],
+  dateSort: [dateSort, invertedDateSort],
 };
 
 const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
@@ -48,10 +68,28 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
 
   // update local onChange
   useEffect(() => {
+    const filterArray = (arr: ticket[]) => {
+      const filteredArray = arr.filter((el) => {
+        const lowerCaseQuery = searchQuery.toLowerCase();
+        if (el?.ticketId?.toLowerCase().includes(lowerCaseQuery)) return true;
+        if (el?.createdBy.toLowerCase().includes(lowerCaseQuery)) return true;
+        if (el?.status.toLowerCase().includes(lowerCaseQuery)) return true;
+        return false;
+      });
+      return filteredArray;
+    };
+
     if (!ticketsLoading && !!dbTickets.length) {
-      setTickets(dbTickets.sort(sortingFxMap[sortingFx][sortFxNumber]));
+      const sortedTickets = dbTickets.sort(
+        sortingFxMap[sortingFx][sortFxNumber]
+      );
+      if (!searchQuery) {
+        setTickets(sortedTickets);
+      } else {
+        setTickets(filterArray(sortedTickets));
+      }
     }
-  }, [dbTickets, ticketsLoading, sortingFx, sortFxNumber]);
+  }, [dbTickets, ticketsLoading, sortingFx, sortFxNumber, searchQuery]);
 
   return (
     <div className="w-full bg-darkBlue rounded-xl shadow-xl pt-4 overflow-hidden">
@@ -72,12 +110,16 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
             <tr className="bg-darkBlue">
               <th className="text-left text-sm font-light text-white opacity-60 2xl:px-8 px-4 pb-2">
                 <button
-                  onClick={() => {
-                    handleSortingToggle("prioritySort");
-                  }}
+                  onClick={() => handleSortingToggle("prioritySort")}
                   className="flex items-center"
                 >
-                  <p>Prioridad</p>
+                  <p
+                    className={`${
+                      sortingFx === "prioritySort" && "font-semibold"
+                    }`}
+                  >
+                    Prioridad
+                  </p>
                   <span
                     className={`material-icons transition-transform transform ${
                       sortingFx === "prioritySort" &&
@@ -90,34 +132,101 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
                 </button>
               </th>
               <th className="text-left text-sm font-light text-white opacity-60 2xl:px-8 px-4 pb-2">
-                <div className="flex items-center">
-                  <p>ID</p>
-                  <span className="material-icons">expand_more</span>
-                </div>
+                <button
+                  onClick={() => handleSortingToggle("idSort")}
+                  className="flex items-center"
+                >
+                  <p className={`${sortingFx === "idSort" && "font-semibold"}`}>
+                    ID
+                  </p>
+                  <span
+                    className={`material-icons transition-transform transform ${
+                      sortingFx === "idSort" &&
+                      sortFxNumber === 1 &&
+                      "rotate-180"
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
               </th>
               <th className="text-left text-sm font-light text-white opacity-60 2xl:px-8 px-4 pb-2">
-                <div className="flex items-center">
-                  <p>Usuario</p>
-                  <span className="material-icons">expand_more</span>
-                </div>
+                <button
+                  onClick={() => handleSortingToggle("userSort")}
+                  className="flex items-center"
+                >
+                  <p
+                    className={`${sortingFx === "userSort" && "font-semibold"}`}
+                  >
+                    Usuario
+                  </p>
+                  <span
+                    className={`material-icons transition-transform transform ${
+                      sortingFx === "userSort" &&
+                      sortFxNumber === 1 &&
+                      "rotate-180"
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
               </th>
               <th className="text-center text-sm font-light text-white opacity-60 2xl:px-8 px-4 pb-2">
-                <div className="flex items-center justify-center">
-                  <p>Estado</p>
-                  <span className="material-icons">expand_more</span>
-                </div>
+                <button
+                  onClick={() => handleSortingToggle("statusSort")}
+                  className="w-full flex items-center justify-center"
+                >
+                  <p
+                    className={`${
+                      sortingFx === "statusSort" && "font-semibold"
+                    }`}
+                  >
+                    Estado
+                  </p>
+                  <span
+                    className={`material-icons transition-transform transform ${
+                      sortingFx === "statusSort" &&
+                      sortFxNumber === 1 &&
+                      "rotate-180"
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
               </th>
               <th className="text-center text-sm font-light text-white opacity-60 2xl:px-8 px-4 pb-2">
-                <div className="flex items-center justify-center">
-                  <p>Fecha</p>
-                  <span className="material-icons">expand_more</span>
-                </div>
+                <button
+                  onClick={() => handleSortingToggle("dateSort")}
+                  className="w-full flex items-center justify-center"
+                >
+                  <p
+                    className={`${sortingFx === "dateSort" && "font-semibold"}`}
+                  >
+                    Fecha
+                  </p>
+                  <span
+                    className={`material-icons transition-transform transform ${
+                      sortingFx === "dateSort" &&
+                      sortFxNumber === 1 &&
+                      "rotate-180"
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
               </th>
             </tr>
           </thead>
           <tbody>
-            {!ticketsLoading &&
-              tickets &&
+            {ticketsLoading ? (
+              <tr>
+                <td colSpan={5} className="h-96 bg-gray-100">
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="spinner-1"></div>
+                  </div>
+                </td>
+              </tr>
+            ) : !!tickets.length ? (
               tickets.map((ticket, idx) => {
                 const isTop = idx === 0 ? true : false;
                 const isBottom = tickets.length - 1 === idx ? true : false;
@@ -131,11 +240,11 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
                     <td className="2xl:px-8 px-4 py-2 border text-base font-light text-darkBlue border-b-lightBlue border-r-white">
                       <Priority priority={ticket?.priority} />
                     </td>
-                    <td className="2xl:px-8 px-4 py-2 border text-base font-light text-darkBlue border-b-lightBlue border-r-white">
-                      {ticket?.ticketId}
+                    <td className="2xl:px-8 px-4 py-2 border text-base font-light text-darkBlue border-b-lightBlue border-r-white rounded-xl hover:bg-gray-200 transition-colors cursor-pointer">
+                      <TicketRedirect ticketId={ticket?.ticketId} />
                     </td>
                     <td className="2xl:px-8 px-4 border text-base font-light text-darkBlue border-b-lightBlue border-r-white rounded-xl hover:bg-gray-200 transition-colors">
-                      <UserOverlay email={ticket?.createdBy} />
+                      <UserRedirect email={ticket?.createdBy} />
                     </td>
                     <td className="2xl:px-8 px-4 py-2 text-center border text-base font-light text-darkBlue border-b-lightBlue border-r-white">
                       <Status status={ticket?.status} />
@@ -146,7 +255,21 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
                     </td>
                   </tr>
                 );
-              })}
+              })
+            ) : (
+              <tr>
+                <td colSpan={5} className="h-96 bg-gray-100">
+                  <div className="w-full h-full flex items-center justify-center">
+                    <div className="max-w-lg text-center opacity-90">
+                      <Text>
+                        No hemos encontrado ningun ticket que contenga los
+                        parameteros de tu busqueda
+                      </Text>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

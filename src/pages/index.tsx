@@ -42,8 +42,8 @@ const Home: React.FC = () => {
       {isDevMode ? (
         <div className="text-5xl font-poppins">THIS IS THE LANDING PAGE</div>
       ) : (
-        <main>
-          <section className="flex font-poppins flex-col items-center justify-center space-y-12 bg-gray-200 min-h-screen px-4 py-8">
+        <main className="font-poppins">
+          <section className="flex flex-col items-center justify-center space-y-12 bg-gray-200 min-h-screen px-4 py-8">
             <Logo height={100} />
             <div className="max-w-md text-[#072F41]">
               <h1 className="text-2xl tracking-wide text-center font-semibold">
@@ -84,8 +84,9 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
+            {/* eslint-disable-next-line */}
             <a
-              href="# "
+              href="#"
               className="h-12 w-12 transform transition-all hover:-translate-y-1 cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full text-[#072F41] shadow-md flex items-center justify-center"
             >
               <span className="material-icons transform -rotate-90 mb-1">

@@ -12,7 +12,7 @@ const AdminHome: React.FC = () => {
       <TicketDashboard
         config={{
           limit: 25,
-          status: ["ongoing"],
+          status: ["ongoing", "pending"],
           email: user?.email,
         }}
       ></TicketDashboard>

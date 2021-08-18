@@ -8,8 +8,9 @@ import Text from "./Text";
 import Button from "./Button";
 import TicketDashboard from "./TicketDashboard";
 import Priority from "./Priority";
-import UserOverlay from "./UserOverlay";
+import UserRedirect from "./UserRedirect";
 import Status from "./Status";
+import TicketRedirect from "./TicketRedirect";
 
 export {
   Logo,
@@ -22,6 +23,7 @@ export {
   Button,
   TicketDashboard,
   Priority,
-  UserOverlay,
+  UserRedirect,
   Status,
+  TicketRedirect,
 };
