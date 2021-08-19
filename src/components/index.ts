@@ -11,6 +11,8 @@ import Priority from "./Priority";
 import UserRedirect from "./UserRedirect";
 import Status from "./Status";
 import TicketRedirect from "./TicketRedirect";
+import UserScreen from "./UserScreen";
+import TicketScreen from "./TicketScreen";
 
 export {
   Logo,
@@ -26,4 +28,6 @@ export {
   UserRedirect,
   Status,
   TicketRedirect,
+  UserScreen,
+  TicketScreen,
 };

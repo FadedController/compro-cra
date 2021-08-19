@@ -5,16 +5,16 @@ interface priorityProps {
   priority: priority | undefined;
 }
 
-const Priority: React.FC<priorityProps> = ({ priority }) => {
-  const priorityMap = {
-    low: ["Baja", "bg-green-400"],
-    medium: ["Media", "bg-yellow-400"],
-    high: ["Alta", "bg-orange-500"],
-    critic: ["Critica", "bg-red-500"],
-  };
+export const priorityMap = {
+  low: ["Baja", "bg-green-400"],
+  medium: ["Media", "bg-yellow-400"],
+  high: ["Alta", "bg-orange-500"],
+  critic: ["Critica", "bg-red-500"],
+};
 
+const Priority: React.FC<priorityProps> = ({ priority }) => {
   return (
-    <div className="flex items-center space-x-2 ">
+    <div className="flex items-center space-x-2">
       {priority && (
         <div
           className={`${priorityMap[priority][1]} rounded-full h-2 w-2`}

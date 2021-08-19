@@ -10,7 +10,7 @@ import { Firestore } from "../../../utils/firebase";
 export const fallbackPhotoUrl = "/brand/no_user.png";
 
 const AdminAccount: React.FC = () => {
-  const [user] = useContext(UserDataContext);
+  const [user, userLoading] = useContext(UserDataContext);
   const [editMode, setEditMode] = useState(false);
   const [localUser, setLocalUser] = useState<user>(user);
 
@@ -61,91 +61,97 @@ const AdminAccount: React.FC = () => {
   return (
     <div className="flex flex-col space-y-8">
       <Heading>Mi Cuenta</Heading>
-      <div className="h-48 w-48 relative">
-        <img
-          alt="Foto de perfil"
-          className="rounded-full h-48 w-48"
-          src={user?.photoUrl || fallbackPhotoUrl}
-        />
-        <button
-          onClick={createTestTicket}
-          className="absolute flex items-center justify-center bottom-0 right-0 h-12 w-12 rounded-full bg-lightBlue transition-transform transform hover:scale-110 cursor-pointer"
-        >
-          <span className="material-icons text-white opacity-90">edit</span>
-        </button>
-      </div>
-      <div className="flex space-x-24">
-        <div className="flex flex-col space-y-4">
-          <div>
-            <Subheading>Nombre</Subheading>
-            {editMode ? (
-              <input
-                className="font-poppins text-darkBlue text-xl border border-b-lightBlue"
-                value={localUser?.displayName || ""}
-                onChange={({ target }) => {
-                  // eslint-ignore-next-line
-                  //@ts-ignore
-                  setLocalUser({ ...localUser, displayName: target.value });
-                }}
-              />
-            ) : (
-              <Text>{user?.displayName}</Text>
+      {!userLoading ? (
+        <>
+          <div className="h-48 w-48 relative">
+            <img
+              alt="Foto de perfil"
+              className="rounded-full h-48 w-48"
+              src={user?.photoUrl || fallbackPhotoUrl}
+            />
+            <button
+              onClick={createTestTicket}
+              className="absolute flex items-center justify-center bottom-0 right-0 h-12 w-12 rounded-full bg-lightBlue transition-transform transform hover:scale-110 cursor-pointer"
+            >
+              <span className="material-icons text-white opacity-90">edit</span>
+            </button>
+          </div>
+          <div className="flex space-x-24">
+            <div className="flex flex-col space-y-4">
+              <div>
+                <Subheading>Nombre</Subheading>
+                {editMode ? (
+                  <input
+                    className="font-poppins text-darkBlue text-xl border border-b-lightBlue"
+                    value={localUser?.displayName || ""}
+                    onChange={({ target }) => {
+                      // eslint-ignore-next-line
+                      //@ts-ignore
+                      setLocalUser({ ...localUser, displayName: target.value });
+                    }}
+                  />
+                ) : (
+                  <Text>{user?.displayName}</Text>
+                )}
+              </div>
+              <div>
+                <Subheading>Correo</Subheading>
+                <Text>{user?.email}</Text>
+              </div>
+              <div>
+                <Subheading>Nombre</Subheading>
+                <Text>{lastLoginStr}</Text>
+              </div>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <div>
+                <Subheading>Departamentos</Subheading>
+                <Text>{departmentsStr}</Text>
+              </div>
+              <div>
+                <Subheading>Permisos</Subheading>
+                <Text>{permissionsStr}</Text>
+              </div>
+              <div>
+                <Subheading>ID de Usuario</Subheading>
+                <Text>{user?.uid}</Text>
+              </div>
+            </div>
+          </div>
+          <div className="flex space-x-4 items-center">
+            {!editMode && (
+              <Button normalWidth onClick={() => setEditMode(true)}>
+                Editar Informacion
+              </Button>
             )}
-          </div>
-          <div>
-            <Subheading>Correo</Subheading>
-            <Text>{user?.email}</Text>
-          </div>
-          <div>
-            <Subheading>Nombre</Subheading>
-            <Text>{lastLoginStr}</Text>
-          </div>
-        </div>
-        <div className="flex flex-col space-y-4">
-          <div>
-            <Subheading>Departamentos</Subheading>
-            <Text>{departmentsStr}</Text>
-          </div>
-          <div>
-            <Subheading>Permisos</Subheading>
-            <Text>{permissionsStr}</Text>
-          </div>
-          <div>
-            <Subheading>ID de Usuario</Subheading>
-            <Text>{user?.uid}</Text>
-          </div>
-        </div>
-      </div>
-      <div className="flex space-x-4 items-center">
-        {!editMode && (
-          <Button normalWidth onClick={() => setEditMode(true)}>
-            Editar Informacion
-          </Button>
-        )}
-        {editMode && (
-          <>
-            <Button
-              normalWidth
-              dark
-              onClick={() => {
-                setEditMode(false);
-                updateUser(localUser);
-              }}
-            >
-              Guardar Cambios
-            </Button>
-            <Button
-              normalWidth
-              onClick={() => {
-                setEditMode(false);
-                setLocalUser(user);
-              }}
-            >
-              Cancelar
-            </Button>
-          </>
-        )}
-      </div>
+            {editMode && (
+              <>
+                <Button
+                  normalWidth
+                  dark
+                  onClick={() => {
+                    setEditMode(false);
+                    updateUser(localUser);
+                  }}
+                >
+                  Guardar Cambios
+                </Button>
+                <Button
+                  normalWidth
+                  onClick={() => {
+                    setEditMode(false);
+                    setLocalUser(user);
+                  }}
+                >
+                  Cancelar
+                </Button>
+              </>
+            )}
+          </div>{" "}
+        </>
+      ) : (
+        <div className="spinner-1"></div>
+      )}
     </div>
   );
 };

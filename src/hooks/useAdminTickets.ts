@@ -19,16 +19,22 @@ const useAdminTickets: useAdminTicketHook = (config) => {
       .where("status", "in", config.status) // all tickets that match any of given status
       .limit(config.limit)
       .orderBy("createdAt", "desc")
-      .onSnapshot((res) => {
-        setLoading(false);
-        let newTickets: any[] = [];
-        res.docs.forEach((doc) => {
-          const docData = doc.data();
-          // @ts-ignore
-          newTickets.push(docData);
-        });
-        setTickets(newTickets);
-      });
+      .onSnapshot(
+        (res) => {
+          setLoading(false);
+          let newTickets: any[] = [];
+          res.docs.forEach((doc) => {
+            const docData = doc.data();
+            // @ts-ignore
+            newTickets.push(docData);
+          });
+          setTickets(newTickets);
+        },
+        (err) => {
+          setLoading(false);
+          console.error(err);
+        }
+      );
     return unsuscribe;
     // eslint-disable-next-line
   }, [config.limit]);

@@ -112,7 +112,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
               <li>
                 <Link
                   className={`flex items-center text-xl ${
-                    currentMenu === "/users"
+                    currentMenu.includes("/users")
                       ? "opacity-90 font-bold"
                       : "opacity-80 font-light"
                   } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
@@ -120,7 +120,7 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                 >
                   <span
                     className={`${
-                      currentMenu === "/users"
+                      currentMenu.includes("/users")
                         ? "material-icons"
                         : "material-icons-outlined"
                     }`}
@@ -128,27 +128,6 @@ const Sidebar: React.FC<sidebarProps> = ({ admin, logout }) => {
                     group
                   </span>
                   <p>Usuarios</p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={`flex items-center text-xl ${
-                    currentMenu === "/appearence"
-                      ? "opacity-90 font-bold"
-                      : "opacity-80 font-light"
-                  } text-white space-x-4 transform hover:translate-x-1 transition-transform`}
-                  to="/app/admin/appearence"
-                >
-                  <span
-                    className={`${
-                      currentMenu === "/appearence"
-                        ? "material-icons"
-                        : "material-icons-outlined"
-                    }`}
-                  >
-                    palette
-                  </span>
-                  <p>Apariencia</p>
                 </Link>
               </li>
             </ul>

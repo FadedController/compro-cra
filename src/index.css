@@ -30,6 +30,15 @@ html {
   border-radius: 50%;
   animation: spin 1s ease forwards infinite;
 }
+.small-spinner {
+  height: 2rem;
+  width: 2rem;
+  background-color: #ffffff00;
+  border: 0.425rem solid #cfdbe4;
+  border-top-color: #67a2cd;
+  border-radius: 50%;
+  animation: spin 1s ease forwards infinite;
+}
 
 @keyframes spin {
   0% {

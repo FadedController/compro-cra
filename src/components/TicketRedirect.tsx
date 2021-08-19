@@ -14,7 +14,7 @@ const TicketRedirect: React.FC<ticketRedirectProps> = ({ ticketId }) => {
       {ticketId && (
         <button
           className="text-left w-full"
-          onClick={() => setRedirect(`/app/admin/tickets/${ticketId}`)}
+          onClick={() => setRedirect(`/app/admin/ticket/${ticketId}`)}
         >
           <p className="font-light">{ticketId}</p>
         </button>

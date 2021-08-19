@@ -68,13 +68,26 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
 
   // update local onChange
   useEffect(() => {
+    const translationMap = {
+      critic: "critica",
+      high: "alta",
+      medium: "media",
+      low: "baja",
+      pending: "pendiente",
+      ongoing: "en progreso",
+      done: "resuelto",
+      none: "",
+    };
+
     const filterArray = (arr: ticket[]) => {
       const filteredArray = arr.filter((el) => {
         const lowerCaseQuery = searchQuery.toLowerCase();
+        const status = translationMap[el?.status || "none"];
+        const priority = translationMap[el?.priority || "none"];
         if (el?.ticketId?.toLowerCase().includes(lowerCaseQuery)) return true;
         if (el?.createdBy.toLowerCase().includes(lowerCaseQuery)) return true;
-        if (el?.status.toLowerCase().includes(lowerCaseQuery)) return true;
-        if (el?.priority.toLowerCase().includes(lowerCaseQuery)) return true;
+        if (status.includes(lowerCaseQuery)) return true;
+        if (priority.toLowerCase().includes(lowerCaseQuery)) return true;
         if (
           new Date(el?.createdAt || 0)
             .toString()
@@ -227,8 +240,8 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
           </thead>
           <tbody>
             {ticketsLoading ? (
-              <tr>
-                <td colSpan={5} className="h-96 bg-gray-100">
+              <tr className="mt-2">
+                <td colSpan={5} className="h-96 bg-white">
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="spinner-1"></div>
                   </div>
@@ -266,7 +279,7 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
               })
             ) : (
               <tr>
-                <td colSpan={5} className="h-96 bg-gray-100">
+                <td colSpan={5} className="h-96 bg-white">
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="max-w-lg text-center opacity-90">
                       <Text>

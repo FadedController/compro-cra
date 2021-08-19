@@ -1,30 +1,25 @@
 import { useEffect, useState } from "react";
 import { user } from "../types";
-import { signOut } from "../utils/auth";
 import { Firestore } from "../utils/firebase";
 
-export type userData = [user, boolean, () => void];
+type useUserIdHook = (uid: string) => [user, boolean];
 
-type useUserHook = (email: string | undefined | null) => userData;
-
-const useUser: useUserHook = (email) => {
+const useUserId: useUserIdHook = (uid) => {
   const [user, setUser] = useState<user>(null);
   const [loading, setLoading] = useState(true);
 
-  const logout = () => {
-    setUser(null);
-    setLoading(false);
-    signOut();
-  };
-
   useEffect(() => {
     const unsuscribe = Firestore.collection("users")
-      .doc(email || "no-doc")
+      .where("uid", "==", uid)
       .onSnapshot(
         (res) => {
-          //@ts-ignore
-          setUser(res.data());
           setLoading(false);
+          res.forEach((doc) => {
+            //@ts-ignore
+            // I know this is fine since database and
+            // Client have synced types
+            setUser(doc.data());
+          });
         },
         (err) => {
           setLoading(false);
@@ -32,9 +27,9 @@ const useUser: useUserHook = (email) => {
         }
       );
     return unsuscribe;
-  }, [email]);
+  }, [uid]);
 
-  return [user, loading, logout];
+  return [user, loading];
 };
 
-export default useUser;
+export default useUserId;

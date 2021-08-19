@@ -8,6 +8,7 @@ import AdminAccount from "./account";
 import AdminHistory from "./history";
 import AdminHome from "./home";
 import AdminPending from "./pending";
+import TicketPage from "./ticket";
 import AdminUsers from "./users";
 
 const AdminPage: React.FC = () => {
@@ -31,7 +32,7 @@ const AdminPage: React.FC = () => {
                 <Route path="/app/admin/history" component={AdminHistory} />
                 <Route path="/app/admin/account" component={AdminAccount} />
                 <Route path="/app/admin/users" component={AdminUsers} />
-                <Route path="/app/admin/appearence">Appearence</Route>
+                <Route path="/app/admin/ticket" component={TicketPage} />
                 <Route exact path="/app/admin/" component={AdminHome} />
                 <Route path="*">
                   <Redirect to="/app/admin" />
