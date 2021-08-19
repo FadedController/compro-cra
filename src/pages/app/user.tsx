@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Redirect } from "react-router-dom";
-import { FullscreenLoading } from "../../components";
+import { FullscreenLoading } from "../../components/tickets";
 import { useRedirect, useUser } from "../../hooks";
 import { Auth } from "../../utils/firebase";
 

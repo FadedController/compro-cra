@@ -1,5 +1,5 @@
 import React from "react";
-import { priority } from "../types";
+import { priority } from "../../types";
 
 interface priorityProps {
   priority: priority | undefined;

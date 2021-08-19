@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { Heading, Text, UserScreen } from "../../../components";
+import { Heading, Text, UserScreen } from "../../../components/tickets";
 
 const AdminUsers: React.FC = () => {
   const { pathname } = useLocation();

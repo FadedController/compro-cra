@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { Heading, TicketDashboard } from "../../../components";
-import { UserDataContext } from "../../../components/PageWrapper";
+import { Heading, TicketDashboard } from "../../../components/tickets";
+import { UserDataContext } from "../../../components/tickets/PageWrapper";
 
 const AdminPending: React.FC = () => {
   const [user] = useContext(UserDataContext);

@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
-import { Button, Heading, Subheading, Text } from "../../../components";
-import { UserDataContext } from "../../../components/PageWrapper";
+import { Button, Heading, Subheading, Text } from "../../../components/tickets";
+import { UserDataContext } from "../../../components/tickets/PageWrapper";
 import { ticket, user } from "../../../types";
 import { Firestore } from "../../../utils/firebase";
 

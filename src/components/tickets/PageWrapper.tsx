@@ -1,6 +1,6 @@
 import React from "react";
 import { createContext } from "react";
-import { userData } from "../hooks/useUser";
+import { userData } from "../../hooks/useUser";
 
 interface pageWrapperProps {
   userData: userData;

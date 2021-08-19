@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useAdminTickets } from "../hooks";
-import { status, ticket } from "../types";
+import { useAdminTickets } from "../../hooks";
+import { status, ticket } from "../../types";
 import {
   prioritySort,
   invertedPrioritySort,
@@ -14,10 +14,12 @@ import {
   invertedStatusSort,
   dateSort,
   invertedDateSort,
-} from "../utils/sorting";
-import { UserRedirect, Status, Priority } from "../components";
+} from "../../utils/sorting";
 import TicketRedirect from "./TicketRedirect";
 import Text from "./Text";
+import Priority from "./Priority";
+import UserRedirect from "./UserRedirect";
+import Status from "./Status";
 
 interface ticketDashboardProps {
   config: {

@@ -1,5 +1,5 @@
 import React from "react";
-import { status } from "../types";
+import { status } from "../../types";
 
 interface statusProps {
   status: status | undefined;

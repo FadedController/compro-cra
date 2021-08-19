@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
-import { Heading, TicketDashboard } from "../../../components";
-import { UserDataContext } from "../../../components/PageWrapper";
+import { Heading, TicketDashboard } from "../../../components/tickets";
+import { UserDataContext } from "../../../components/tickets/PageWrapper";
 
 const AdminHistory: React.FC = () => {
   const [user] = useContext(UserDataContext);
@@ -14,7 +14,7 @@ const AdminHistory: React.FC = () => {
           status: ["done"],
           email: user?.email,
         }}
-      ></TicketDashboard>
+      />
     </div>
   );
 };

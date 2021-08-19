@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
-import { Heading, TicketDashboard } from "../../../components";
-import { UserDataContext } from "../../../components/PageWrapper";
+import { Heading, TicketDashboard } from "../../../components/tickets";
+import { UserDataContext } from "../../../components/tickets/PageWrapper";
 
 const AdminHome: React.FC = () => {
   const [user] = useContext(UserDataContext);
@@ -15,7 +15,7 @@ const AdminHome: React.FC = () => {
           status: ["ongoing", "pending"],
           email: user?.email,
         }}
-      ></TicketDashboard>
+      />
     </div>
   );
 };

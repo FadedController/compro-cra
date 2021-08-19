@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Button, FullscreenLoading, Logo } from "../../components";
+import { Button, FullscreenLoading, Logo } from "../../components/tickets";
 import { useRedirect, useUser } from "../../hooks";
 import { user } from "../../types";
 import { signInWithGoogle, signInWithMicrosoft } from "../../utils/auth";

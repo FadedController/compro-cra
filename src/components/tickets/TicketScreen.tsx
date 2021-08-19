@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useTicketId } from "../hooks";
-import { ticket } from "../types";
-import { Firestore } from "../utils/firebase";
+import { useTicketId } from "../../hooks";
+import { ticket } from "../../types";
+import { Firestore } from "../../utils/firebase";
 import Button from "./Button";
 import NotificationOverlay from "./NotificationOverlay";
 import { priorityMap } from "./Priority";

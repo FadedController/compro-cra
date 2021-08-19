@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect, useLocation } from "react-router-dom";
-import { Heading, TicketScreen } from "../../../components";
+import { Heading, TicketScreen } from "../../../components/tickets";
 
 const TicketPage: React.FC = () => {
   const { pathname } = useLocation();

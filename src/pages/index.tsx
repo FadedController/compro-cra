@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Logo } from "../components";
+import { Logo } from "../components/tickets";
 import axios from "axios";
 
 // Refactoring test commit

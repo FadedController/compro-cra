@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { useUser } from "../hooks";
-import { fallbackPhotoUrl } from "../pages/app/admin/account";
+import { useUser } from "../../hooks";
+import { fallbackPhotoUrl } from "../../pages/app/admin/account";
 
 interface userRedirectProps {
   email: string | undefined;

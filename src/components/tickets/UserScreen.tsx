@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useUserId } from "../hooks";
-import { fallbackPhotoUrl } from "../pages/app/admin/account";
-import { user } from "../types";
-import { Firestore } from "../utils/firebase";
+import { useUserId } from "../../hooks";
+import { fallbackPhotoUrl } from "../../pages/app/admin/account";
+import { user } from "../../types";
+import { Firestore } from "../../utils/firebase";
 import Button from "./Button";
 import Heading from "./Heading";
 import Subheading from "./Subheading";
