@@ -40,7 +40,7 @@ const Home: React.FC = () => {
   return (
     <>
       {isDevMode ? (
-        <div className="text-5xl font-poppins">THIS IS THE LANDING PAGE</div>
+        <main className="text-5xl font-poppins"></main>
       ) : (
         <main className="font-poppins">
           <section className="flex flex-col items-center justify-center space-y-12 bg-gray-200 min-h-screen px-4 py-8">

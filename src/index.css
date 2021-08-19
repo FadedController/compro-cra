@@ -40,16 +40,40 @@ html {
   animation: spin 1s ease forwards infinite;
 }
 
-@keyframes spin {
+.notification {
+  animation: exit 0.5s ease forwards;
+}
+
+.notification-active {
+  animation: enter 0.5s ease forwards;
+}
+
+@keyframes enter {
   0% {
+    transform: translateY(-5rem);
   }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-0.25rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes exit {
+  100% {
+    transform: translateY(-5rem);
+  }
+}
+
+@keyframes spin {
   100% {
     transform: rotate(-360deg);
   }
 }
 @-webkit-keyframes spin {
-  0% {
-  }
   100% {
     -webkit-transform: rotate(-360deg);
   }

@@ -13,6 +13,7 @@ import Status from "./Status";
 import TicketRedirect from "./TicketRedirect";
 import UserScreen from "./UserScreen";
 import TicketScreen from "./TicketScreen";
+import NotificationOverlay from "./NotificationOverlay";
 
 export {
   Logo,
@@ -30,4 +31,5 @@ export {
   TicketRedirect,
   UserScreen,
   TicketScreen,
+  NotificationOverlay,
 };

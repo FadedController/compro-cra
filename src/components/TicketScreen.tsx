@@ -5,6 +5,7 @@ import { useTicketId } from "../hooks";
 import { ticket } from "../types";
 import { Firestore } from "../utils/firebase";
 import Button from "./Button";
+import NotificationOverlay from "./NotificationOverlay";
 import { priorityMap } from "./Priority";
 import Subheading from "./Subheading";
 import Text from "./Text";
@@ -19,10 +20,21 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
   const [ticket, setTicket] = useState<ticket>(dbTicket);
   const [hasUpdated, setHasUpdated] = useState(false);
   const [updatedLoading, setUpdatedLoading] = useState(false);
+  const [notification, setNotification] = useState("");
+  const [notificationState, setNotificationState] = useState(false);
 
   useEffect(() => {
     setTicket(dbTicket);
   }, [dbTicket]);
+
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText(`https://comprov.com/app/admin/ticket/${ticketId}`)
+      .then(() => {
+        setNotificationState(true);
+        setNotification("Link copiado al portapapeles");
+      });
+  };
 
   const updateTickets = () => {
     setUpdatedLoading(true);
@@ -48,12 +60,17 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
         <>
           {ticket ? (
             <div className="max-w-2xl flex flex-col space-y-3">
+              <NotificationOverlay
+                closeFx={() => setNotificationState(false)}
+                notificationText={notification}
+                notificationState={notificationState}
+              />
               <div className="grid grid-cols-2 gap-y-2">
                 <div>
                   <Subheading>Creado Por</Subheading>
                   <UserRedirect
                     name
-                    className="font-poppins text-xl hover:bg-gray-100 rounded-xl"
+                    className="font-poppins bg-transparent text-xl hover:bg-gray-100 rounded-xl"
                     email={ticket.createdBy}
                   />
                 </div>
@@ -61,14 +78,14 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
                   <Subheading>Asignado a</Subheading>
                   <UserRedirect
                     name
-                    className="font-poppins text-xl hover:bg-gray-100 rounded-xl"
+                    className="font-poppins bg-transparent text-xl hover:bg-gray-100 rounded-xl"
                     email={ticket.asignedTo}
                   />
                 </div>
                 <div>
                   <Subheading>Estado</Subheading>
                   <select
-                    className="font-poppins text-darkBlue text-xl rounded-xl hover:bg-gray-100"
+                    className="font-poppins text-darkBlue text-xl rounded-xl bg-white hover:bg-gray-100"
                     value={ticket.status}
                     onChange={({ target }) => {
                       setHasUpdated(true);
@@ -76,9 +93,15 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
                       setTicket({ ...ticket, status: target.value });
                     }}
                   >
-                    <option value="pending">Pendiente</option>
-                    <option value="ongoing">En progreso</option>
-                    <option value="done">Resuelto</option>
+                    <option className="bg-white" value="pending">
+                      Pendiente
+                    </option>
+                    <option className="bg-white" value="ongoing">
+                      En progreso
+                    </option>
+                    <option className="bg-white" value="done">
+                      Resuelto
+                    </option>
                   </select>
                 </div>
                 <div>
@@ -90,7 +113,7 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
                       } rounded-full h-2 w-2`}
                     ></div>
                     <select
-                      className="font-poppins text-darkBlue text-xl rounded-xl hover:bg-gray-100"
+                      className="font-poppins text-darkBlue text-xl rounded-xl bg-white hover:bg-gray-100"
                       value={ticket.priority}
                       onChange={({ target }) => {
                         setHasUpdated(true);
@@ -98,10 +121,18 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
                         setTicket({ ...ticket, priority: target.value });
                       }}
                     >
-                      <option value="low">Baja</option>
-                      <option value="medium">Media</option>
-                      <option value="high">Alta</option>
-                      <option value="critic">Critica</option>
+                      <option className="bg-white" value="low">
+                        Baja
+                      </option>
+                      <option className="bg-white" value="medium">
+                        Media
+                      </option>
+                      <option className="bg-white" value="high">
+                        Alta
+                      </option>
+                      <option className="bg-white" value="critic">
+                        Critica
+                      </option>
                     </select>
                   </div>
                 </div>
@@ -117,8 +148,16 @@ const TicketScreen: React.FC<ticketScreenProps> = ({ ticketId }) => {
                   <Subheading>Asunto</Subheading>
                   <Text>{ticket.category}</Text>
                 </div>
-                <div className="flex flex-col space-y-1">
-                  <Subheading>Ticket ID</Subheading>
+                <div
+                  className="flex flex-col space-y-1 hover:bg-gray-100 rounded-xl cursor-pointer transition-colors"
+                  onClick={copyToClipboard}
+                >
+                  <div className="flex space-x-2 items-center">
+                    <Subheading>Ticket ID</Subheading>
+                    <span className="material-icons text-lightBlue text-sm">
+                      content_paste
+                    </span>
+                  </div>
                   <Text>{ticket.ticketId}</Text>
                 </div>
               </div>
