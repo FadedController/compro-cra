@@ -21,17 +21,19 @@ const UserRedirect: React.FC<userRedirectProps> = ({
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {user && user.uid && (
+      {user && (
         <div
           className={`flex items-center space-x-2 py-2 ${className}`}
-          onClick={() => setRedirect(`/app/admin/users/${user.uid}`)}
+          onClick={() => setRedirect(`/app/admin/users/${user.uid || ""}`)}
         >
           <img
             alt="Foto de perfil"
             className="h-6 w-6 rounded-full"
             src={user?.photoUrl ? user.photoUrl : fallbackPhotoUrl}
           ></img>
-          <p className="cursor-pointer text-darkBlue">{uiText}</p>
+          <p className="cursor-pointer text-darkBlue">
+            {uiText || "No registrado"}
+          </p>
         </div>
       )}
     </>

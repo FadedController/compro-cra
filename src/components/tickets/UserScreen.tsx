@@ -101,7 +101,24 @@ const UserScreen: React.FC<userScreenProps> = ({ uid }) => {
                   </div>
                   <div>
                     <Subheading>Permisos</Subheading>
-                    <Text>{permissionsStr}</Text>
+                    {editMode ? (
+                      <select
+                        className="font-poppins text-darkBlue text-xl"
+                        value={localUser?.permissions || ""}
+                        onChange={({ target }) => {
+                          setLocalUser({
+                            ...localUser,
+                            // @ts-ignore
+                            permissions: target.value,
+                          });
+                        }}
+                      >
+                        <option value="admin">Administrador</option>
+                        <option value="user">Usuario</option>
+                      </select>
+                    ) : (
+                      <Text>{permissionsStr}</Text>
+                    )}
                   </div>
                   <div>
                     <Subheading>ID de Usuario</Subheading>
@@ -110,12 +127,7 @@ const UserScreen: React.FC<userScreenProps> = ({ uid }) => {
                 </div>
               </div>
               <div className="flex space-x-4 items-center">
-                {!editMode && (
-                  <Button normalWidth onClick={() => setEditMode(true)}>
-                    Editar Informacion
-                  </Button>
-                )}
-                {editMode && (
+                {editMode ? (
                   <>
                     <Button
                       normalWidth
@@ -137,6 +149,10 @@ const UserScreen: React.FC<userScreenProps> = ({ uid }) => {
                       Cancelar
                     </Button>
                   </>
+                ) : (
+                  <Button normalWidth onClick={() => setEditMode(true)}>
+                    Editar Informacion
+                  </Button>
                 )}
               </div>
             </>

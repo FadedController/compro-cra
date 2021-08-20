@@ -1,6 +1,10 @@
 import React from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { Heading, Text, UserScreen } from "../../../components/tickets";
+import {
+  Heading,
+  UserScreen,
+  UsersDashboard,
+} from "../../../components/tickets";
 
 const AdminUsers: React.FC = () => {
   const { pathname } = useLocation();
@@ -12,10 +16,7 @@ const AdminUsers: React.FC = () => {
       <Route exact path="/app/admin/users/">
         <div className="flex flex-col space-y-6">
           <Heading>Usuarios</Heading>
-          <Text>
-            Another dashboard that shows all users and allow for creating new
-            ones
-          </Text>
+          <UsersDashboard permissions={["admin", "user"]} />
         </div>
       </Route>
       <Route path="/app/admin/users/">
