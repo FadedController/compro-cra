@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Logo } from "../components/tickets";
 import axios from "axios";
+import { Navigation } from "../components/landing";
 
 // Refactoring test commit
 
 const Home: React.FC = () => {
-  const [isDevMode, setIsDevMode] = useState<boolean>();
+  const [isDevMode, setIsDevMode] = useState<boolean>(
+    process.env.NODE_ENV === "development" ? true : false
+  );
   const [count, setCount] = useState(0);
   const [password, setPassword] = useState("");
   const [inputMode, setInputMode] = useState(true);
@@ -40,7 +43,72 @@ const Home: React.FC = () => {
   return (
     <>
       {isDevMode ? (
-        <main className="text-5xl font-poppins"></main>
+        <main className="font-poppins">
+          <Navigation></Navigation>
+          <section id="inicio">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat
+            aliquam voluptatibus quisquam possimus, nostrum eaque quos saepe
+            suscipit voluptatum sunt optio! Harum repellendus molestiae deleniti
+            corporis non aspernatur alias incidunt dolores ab, quas delectus
+            accusamus eius libero voluptatem dolorum ad! Sint, nostrum quod!
+            Odit quae laudantium tempora, possimus ratione praesentium quisquam
+            exercitationem aliquid doloribus voluptate sapiente repudiandae
+            eveniet, maiores dolorum ad omnis accusamus, quod ducimus ut sequi
+            mollitia consequuntur? Asperiores magni aut culpa illo sit nobis
+            optio quis. Dignissimos ut natus culpa cupiditate blanditiis
+            perferendis quas velit error, beatae autem deleniti odio? Ipsum
+            aliquid vero repellat quod ducimus veritatis commodi temporibus
+            nulla eaque totam recusandae sit sequi ut sapiente amet, dolorum
+            iure delectus doloribus minus magni. Blanditiis dicta excepturi
+            minima at dolorem harum enim! Similique ducimus consequatur quidem
+            cupiditate ipsa esse molestiae, molestias consectetur quo excepturi
+            veniam quod iure recusandae, ratione, delectus voluptatem
+            consequuntur vero magnam animi tempora sint sequi eaque ex nemo! Qui
+            dolor asperiores repudiandae, corrupti ipsum quos eius tempora est,
+            vero excepturi quidem numquam hic cum dolore. Laudantium, pariatur!
+            Ea accusamus quibusdam, ullam eum, dignissimos minus eius, fugiat
+            dolores voluptatem doloremque similique quod laudantium quae
+            sapiente iusto sint eveniet soluta adipisci nesciunt praesentium
+            ipsam temporibus et a aut. Sit atque obcaecati pariatur et hic
+            aperiam! Rem maxime, similique ab dolor labore nesciunt ullam nobis
+            autem eius ipsum beatae voluptas, culpa unde et rerum at optio
+            facere blanditiis. Saepe, placeat. Fugit, rerum eveniet, consequatur
+            quis cupiditate veniam saepe nemo minus, temporibus commodi eligendi
+            aspernatur. Accusantium ad at omnis quasi dolores minima ipsam modi!
+          </section>
+          <section id="nosotros" className="bg-lightBlue">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem
+            fuga neque quis nam minus amet velit repudiandae numquam.
+            Voluptatibus neque dolores deleniti, iste autem delectus optio
+            provident repudiandae quibusdam quis dicta minima, ut necessitatibus
+            voluptas. Itaque repudiandae, vero sint labore error totam quod nam.
+            Enim voluptatum vitae modi quasi ea corporis ipsa ad perferendis.
+            Deserunt expedita aperiam voluptatibus rem aut. Officiis in
+            molestias placeat quasi, itaque eum id consequuntur neque, expedita
+            suscipit incidunt. Laborum, repudiandae distinctio nostrum atque
+            iure consectetur sed odio, veniam delectus asperiores tenetur
+            aspernatur? Quisquam quam deleniti maiores. Explicabo et, hic
+            officiis modi ab illo nostrum debitis doloribus velit rerum deserunt
+            repudiandae rem quae optio ipsa molestiae earum ullam, suscipit
+            natus. Assumenda saepe neque odit porro totam sit delectus
+            similique, voluptatibus blanditiis ex quasi ipsam debitis, sapiente
+            necessitatibus minus modi numquam, ea rerum officia cumque optio
+            beatae! Nam voluptatem minima natus temporibus dolorum unde
+            provident ab assumenda explicabo enim possimus eum fuga vitae,
+            perferendis perspiciatis neque sequi id nihil, quis excepturi nemo
+            atque. Accusantium non pariatur enim ipsam beatae dolores officia
+            quod ratione optio? Ea explicabo, debitis beatae totam cumque optio,
+            quia reiciendis similique minima assumenda saepe id temporibus
+            architecto pariatur minus voluptatem! Iusto porro accusamus, hic
+            dolor assumenda magnam omnis perspiciatis esse iure nihil molestiae
+            perferendis laborum temporibus pariatur saepe, cumque aspernatur.
+            Cumque voluptatum saepe ipsum accusamus! Fugit aliquid eveniet atque
+            est corporis rem praesentium harum? Tenetur neque obcaecati in
+            aspernatur veniam, totam ea corporis dignissimos expedita libero vel
+            harum odit minus delectus ipsum veritatis autem illum ut aperiam
+            doloribus ipsa!
+          </section>
+        </main>
       ) : (
         <main className="font-poppins">
           <section className="flex flex-col items-center justify-center space-y-12 bg-gray-200 min-h-screen px-4 py-8">
