@@ -97,6 +97,13 @@ const TicketDashboard: React.FC<ticketDashboardProps> = ({ config }) => {
             .includes(lowerCaseQuery)
         )
           return true;
+        if (
+          new Date(el?.createdAt || 0)
+            .toLocaleDateString()
+            .toLowerCase()
+            .includes(searchQuery)
+        )
+          return true;
         return false;
       });
       return filteredArray;
