@@ -90,7 +90,7 @@ const UserScreen: React.FC<userScreenProps> = ({ uid }) => {
                     <Text>{user?.email}</Text>
                   </div>
                   <div>
-                    <Subheading>Nombre</Subheading>
+                    <Subheading>Ultimo Inicio de Sesión</Subheading>
                     <Text>{lastLoginStr}</Text>
                   </div>
                 </div>
