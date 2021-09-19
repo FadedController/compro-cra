@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useContext } from "react";
 import { Button, Heading, Subheading, Text } from "../../../components/tickets";
 import { UserDataContext } from "../../../components/tickets/PageWrapper";
-import { ticket, user } from "../../../types";
+import { user } from "../../../types";
 import { Firestore } from "../../../utils/firebase";
 
 export const fallbackPhotoUrl = "/brand/no_user.png";
@@ -19,22 +19,6 @@ const AdminAccount: React.FC = () => {
       setLocalUser(user);
     }
   }, [user]);
-
-  const createTestTicket = () => {
-    const newTicket = Firestore.collection("tickets").doc();
-    const testTicket: ticket = {
-      asignedTo: "adpadillar25@gmail.com",
-      category: "VPN / Login",
-      createdAt: new Date().getTime(),
-      createdBy: "todaysopinion.podcast@gmail.com",
-      department: "Sistemas",
-      description: "Lorem ipsum dolor sit amet",
-      priority: "medium",
-      status: "pending",
-      ticketId: newTicket.id,
-    };
-    newTicket.set(testTicket);
-  };
 
   const updateUser = (updatedUser: user) => {
     if (updatedUser) {
@@ -69,10 +53,7 @@ const AdminAccount: React.FC = () => {
               className="rounded-full h-48 w-48"
               src={user?.photoUrl || fallbackPhotoUrl}
             />
-            <button
-              onClick={createTestTicket}
-              className="absolute flex items-center justify-center bottom-0 right-0 h-12 w-12 rounded-full bg-lightBlue transition-transform transform hover:scale-110 cursor-pointer"
-            >
+            <button className="absolute flex items-center justify-center bottom-0 right-0 h-12 w-12 rounded-full bg-lightBlue transition-transform transform hover:scale-110 cursor-pointer">
               <span className="material-icons text-white opacity-90">edit</span>
             </button>
           </div>
