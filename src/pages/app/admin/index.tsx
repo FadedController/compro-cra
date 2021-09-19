@@ -28,7 +28,7 @@ const AdminPage: React.FC = () => {
       {redirectUrl && <Redirect to={redirectUrl} />}
       {!redirectLoading && !userLoading && (
         <>
-          <Sidebar admin logout={logout} />
+          <Sidebar logout={logout} />
           <div className="w-full h-screen overflow-auto">
             <PageWrapper userData={[user, userLoading, logout]}>
               <Switch>

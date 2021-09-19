@@ -1,8 +1,16 @@
 import React from "react";
 
-const Heading: React.FC = ({ children }) => {
+interface headingProps {
+  white?: boolean;
+}
+
+const Heading: React.FC<headingProps> = ({ children, white }) => {
   return (
-    <h1 className="text-4xl font-extrabold font-poppins text-darkBlue">
+    <h1
+      className={`text-4xl font-extrabold font-poppins ${
+        white ? "text-white" : "text-darkBlue"
+      }`}
+    >
       {children}
     </h1>
   );

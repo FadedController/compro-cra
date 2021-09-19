@@ -1,4 +1,5 @@
 import Logo from "./Logo";
+import Navbar from "./Navbar";
 import FullscreenLoading from "./FullscreenLoading";
 import Sidebar from "./Sidebar";
 import PageWrapper from "./PageWrapper";
@@ -19,6 +20,7 @@ import UsersDashboard from "./UsersDashboard";
 export {
   Logo,
   Sidebar,
+  Navbar,
   FullscreenLoading,
   PageWrapper,
   Heading,
