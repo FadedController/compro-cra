@@ -21,7 +21,9 @@ const Sidebar: React.FC<sidebarProps> = ({ logout }) => {
 
   return (
     <nav className="flex flex-col 2xl:space-y-28 space-y-16 items-center w-2/12 h-screen bg-darkBlue rounded-r-xl font-poppins py-12 px-6 2xl:px-12 overflow-y-scroll">
-      <Logo height={50} white />
+      <Link to="/app/admin">
+        <Logo height={50} white />
+      </Link>
       <div className="flex flex-col 2xl:space-y-16 space-y-12 w-full">
         <div className="flex flex-col space-y-4">
           <p className="text-base text-lightBlue opacity-70">Menú</p>
