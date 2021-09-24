@@ -7,8 +7,14 @@ type useAdminTicketConfig = {
   status: status[];
   limit: number;
 };
+
 type useAdminTicketHook = (config: useAdminTicketConfig) => [ticket[], boolean];
 
+/**
+ * Returns all of the tickets that match the asigned email and statuses
+ * @param config
+ * @returns [ticket[], boolean]
+ */
 const useAdminTickets: useAdminTicketHook = ({ email, limit, status }) => {
   const [tickets, setTickets] = useState<ticket[]>([]);
   const [loading, setLoading] = useState(true);
