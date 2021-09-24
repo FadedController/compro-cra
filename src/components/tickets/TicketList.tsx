@@ -13,7 +13,7 @@ interface ticketListProps {
 }
 
 const TicketList: React.FC<ticketListProps> = ({ config }) => {
-  const [limit, setLimit] = useState(config.limit);
+  const [limit] = useState(config.limit);
   const [ticketList, ticketLoading] = useUserTickets({
     email: config.email,
     limit,
