@@ -16,6 +16,7 @@ import UserScreen from "./UserScreen";
 import TicketScreen from "./TicketScreen";
 import NotificationOverlay from "./NotificationOverlay";
 import UsersDashboard from "./UsersDashboard";
+import NewTicket from "./newTicket";
 
 export {
   Logo,
@@ -36,4 +37,5 @@ export {
   TicketScreen,
   NotificationOverlay,
   UsersDashboard,
+  NewTicket,
 };

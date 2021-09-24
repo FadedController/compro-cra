@@ -6,6 +6,12 @@ type useTicketIdHook = (
   ticketId: string
 ) => [ticket, boolean, Firebase.firestore.FirestoreError | null];
 
+/**
+ * Returns the ticket that matches the id
+ * @param ticketId string
+ * @returns [ticket, boolean, error]
+ */
+
 const useTicketId: useTicketIdHook = (ticketId) => {
   const [ticket, setTicket] = useState<ticket>(null);
   const [loading, setLoading] = useState(true);

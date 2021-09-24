@@ -4,6 +4,7 @@ import useRedirect from "./useRedirect";
 import useAdminTickets from "./useAdminTickets";
 import useTicketId from "./useTicketId";
 import useAdminUsers from "./useAdminUsers";
+import useUserTickets from "./useUserTickets";
 
 export {
   useUser,
@@ -12,4 +13,5 @@ export {
   useUserId,
   useTicketId,
   useAdminUsers,
+  useUserTickets,
 };
