@@ -17,7 +17,11 @@ const useRedirect: useRedirectHook = (user, userLoading) => {
       if (user) {
         if (pathname.includes(user.permissions || "")) {
           // /app/admin/users => edge case that contains both user.permissions
-          if (pathname.includes("admin") && pathname.includes("user")) {
+          if (
+            pathname.includes("admin") &&
+            pathname.includes("user") &&
+            user.permissions === "user"
+          ) {
             setLoading(false);
             setRedirect("/app/user");
           } else {
