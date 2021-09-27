@@ -38,7 +38,7 @@ const Navbar: React.FC<navbarProps> = ({ logout }) => {
         </div>
       </div>
       <div
-        className={`bg-darkBlue z-50 transition-all flex flex-col space-y-3 overflow-hidden fixed top-16 right-0 px-6 ${
+        className={`bg-darkBlue z-50 transition-all flex flex-col items-center space-y-3 overflow-hidden fixed top-16 right-0 px-6 ${
           state ? "h-52 py-4" : "h-0 py-0"
         }`}
       >
