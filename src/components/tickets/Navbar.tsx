@@ -14,7 +14,7 @@ const Navbar: React.FC<navbarProps> = ({ logout }) => {
 
   return (
     <>
-      <div className="bg-darkBlue flex sticky top-0 z-50">
+      <div className="bg-darkBlue flex sticky top-0 z-20">
         <div className="flex justify-between w-full my-4 mx-4">
           <Link to="/app/user" onClick={close}>
             <Logo height={40} white />
@@ -38,7 +38,7 @@ const Navbar: React.FC<navbarProps> = ({ logout }) => {
         </div>
       </div>
       <div
-        className={`bg-darkBlue z-50 transition-all flex flex-col space-y-3 overflow-hidden fixed top-16 right-0 px-6 ${
+        className={`bg-darkBlue z-20 transition-all flex flex-col space-y-3 overflow-hidden fixed top-16 right-0 px-6 ${
           state ? "h-52 py-4" : "h-0 py-0"
         }`}
       >
