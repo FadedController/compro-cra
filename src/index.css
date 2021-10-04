@@ -82,3 +82,16 @@ html {
 .min-h-96 {
   min-height: 24rem;
 }
+
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(255, 255, 255);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #67a2cd;
+  border-radius: 2px;
+}

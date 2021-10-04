@@ -22,7 +22,7 @@ const TicketList: React.FC<ticketListProps> = ({ config }) => {
 
   return (
     <div>
-      {!ticketLoading && !!ticketList.length && (
+      {!ticketLoading && !!ticketList.length ? (
         <div className="grid gap-y-3">
           {ticketList.map((ticket, i) => {
             const statusTest =
@@ -63,6 +63,10 @@ const TicketList: React.FC<ticketListProps> = ({ config }) => {
               </div>
             );
           })}
+        </div>
+      ) : (
+        <div className="flex w-full items-center justify-center">
+          <div className="spinner"></div>
         </div>
       )}
     </div>
