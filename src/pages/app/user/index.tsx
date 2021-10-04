@@ -11,6 +11,7 @@ import { Auth } from "../../../utils/firebase";
 import UserHome from "./home";
 import UserHistory from "./history";
 import UserNew from "./new";
+import UserTicket from "./ticket";
 
 const UserPage: React.FC = () => {
   const [auth, authLoading] = useAuthState(Auth);
@@ -31,6 +32,7 @@ const UserPage: React.FC = () => {
               <Switch>
                 <Route path="/app/user/history" component={UserHistory} />
                 <Route path="/app/user/new" component={UserNew} />
+                <Route path="/app/user/ticket" component={UserTicket} />
                 <Route exact path="/app/user/" component={UserHome} />
                 <Route path="*">
                   <Redirect to="/app/user" />
