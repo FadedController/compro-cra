@@ -49,7 +49,15 @@ const TicketList: React.FC<ticketListProps> = ({ config }) => {
                     <User email={ticket?.asignedTo} />
                   </div>
                   <div className="flex-1">
-                    <Button>Más info</Button>
+                    <Button
+                      onClick={() =>
+                        window.location.replace(
+                          `/app/user/ticket/${ticket?.ticketId}`
+                        )
+                      }
+                    >
+                      Más info
+                    </Button>
                   </div>
                 </div>
               </div>

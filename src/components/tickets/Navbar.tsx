@@ -14,7 +14,7 @@ const Navbar: React.FC<navbarProps> = ({ logout }) => {
 
   return (
     <>
-      <div className="bg-darkBlue flex sticky top-0 z-50">
+      <div className="bg-darkBlue flex sticky top-0 z-20">
         <div className="flex justify-between w-full my-4 mx-4">
           <Link to="/app/user" onClick={close}>
             <Logo height={40} white />
